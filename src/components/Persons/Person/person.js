@@ -9,11 +9,19 @@ const Person = (props) => {
 
 // Using classes to create components 
  import React, { Component } from 'react';
+ import Radium from 'radium';
 
  class Person extends Component {
+    styles = {
+        '@media (min-width: 500px)' :{
+            width: '450px',
+            color: 'salmon'
+        }
+    }
+
      render(){
          return (
-            <div>            
+            <div style={this.styles}>            
                 <p onClick={this.props.click}> My name is { this.props.name } and age is { this.props.age } </p>
                 <p>{ this.props.children }</p>
                 <input type='text' onChange={this.props.changed}/>
@@ -22,4 +30,4 @@ const Person = (props) => {
      }
  }
 
- export default Person;
+ export default Radium(Person);

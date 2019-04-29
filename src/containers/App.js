@@ -1,8 +1,10 @@
 import React, { Component, useState } from 'react';
-import Person from './Person/person';
-import UserInput from './UserInput/UserInput';
-import UserOutput from './UserOutput/UserOutput';
-import './App.css';
+import Person from '../components/Persons/Person/person';
+import Cockpit from '../components/Cockpit/Cockpit';
+import UserInput from '../UserInput/UserInput';
+import UserOutput from '../UserOutput/UserOutput';
+import { StyleRoot } from 'radium';
+import '../containers/App.css';
 
 /*class App extends Component {
   state = {
@@ -111,18 +113,10 @@ const App = props => {
     })
   }
 
-  const styles = {
-    backgroundColor : 'green',
-    font: 'inherit',
-    border: '1px solid blue',
-    padding: '8px',
-    cursor: 'pointer'
-  }
-
   if(personsState.showPersons){
     // Toggle Background color of toggle persons button to red
 
-    styles.backgroundColor = 'red';
+    //styles.backgroundColor = 'red';
 
     /*persons = (
       <div>
@@ -137,7 +131,7 @@ const App = props => {
   persons = (
     <div>
       { personsState.persons.map((person, index) => {
-        return <Person 
+        return <Persons personState={personsState}
                 click={() => deletePersonHandler(index)} 
                 name={person.name} 
                 age={person.age}
@@ -152,12 +146,13 @@ const App = props => {
 
   return (
     <div className="App">
-    <h1>Hi, I am a React App</h1>
-    <button onClick={switchNameHandler.bind(this, 'Saurabh Chandorkar !!!')}>Switch Name</button>
-    <button style={styles} onClick={togglePersonsHandler}>Toggle Persons</button>
-    {persons}  
+      <StyleRoot>
+          <Cockpit click={() => {switchNameHandler('Saurabh Chandorkar')}} btnClick={togglePersonsHandler}></Cockpit>
+          <Persons clicked={() => {deletePersonHandler(index)}} changed={nameChangedHandler}/>
+    </StyleRoot> 
   </div>
   );
+  
   /*return (
     <div>
       <UserInput />
