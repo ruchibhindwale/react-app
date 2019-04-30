@@ -1,51 +1,8 @@
 import React, { Component, useState } from 'react';
-import Person from '../components/Persons/Person/person';
+import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
-import UserInput from '../UserInput/UserInput';
-import UserOutput from '../UserOutput/UserOutput';
 import { StyleRoot } from 'radium';
 import '../containers/App.css';
-
-/*class App extends Component {
-  state = {
-    persons: [
-      {name: 'SAURABH', age: 37},
-      {name: 'RUCHI', age: 33},
-      {name: 'VIHAAN', age: 4},
-      {name: 'PRISHA', age: 1.5}
-    ]
-  }
-
-  switchNameHandler = () => {
-    console.log('Button Clicked');
-    // Don't do this. It won't work
-    //this.state.persons[0].name = 'Ruchi Chandorkar';
-    this.setState({
-      persons: [
-        {name: 'SAURABH CHANDORKAR', age: 37},
-      {name: 'RUCHI CHANDORKAR', age: 33},
-      {name: 'VIHAAN CHANDORKAR', age: 4},
-      {name: 'PRISHA CHANDORKAR', age: 1.5}
-      ]
-    });
-  }
-
-  render() {
-    return (
-      <div className="App">
-        <h1>Hi, I am a React App</h1>
-        <button onClick={this.switchNameHandler}>Switch Name</button>
-        <Person name={this.state.persons[0].name} age={this.state.persons[0].age}/>
-        <Person name={this.state.persons[1].name} age={this.state.persons[1].age}><h5>My Hobbies : Travelling</h5></Person>
-        <Person name={this.state.persons[2].name} age={this.state.persons[2].age}/>
-        <Person name={this.state.persons[3].name} age={this.state.persons[3].age}/>
-      </div>
-    );
-
-    //return React.createElement('div', {className: 'App'}, React.createElement('hi', null, 'Hi, I am a React App!!!'));
-  }
-}*/
-
 
 const App = props => {
   let persons = null; 
@@ -78,7 +35,7 @@ const App = props => {
         {id:'3', name: 'VIHAAN Chandorkar', age: 4},
         {id:'4', name: 'PRISHA Chandorkar', age: 1.5}
       ],
-      showPersons: false
+      showPersons: true
     });
   }
 
@@ -114,56 +71,23 @@ const App = props => {
   }
 
   if(personsState.showPersons){
-    // Toggle Background color of toggle persons button to red
-
-    //styles.backgroundColor = 'red';
-
-    /*persons = (
+    persons = (
       <div>
-      // Two ways of passing arguments in methods - one using bind and other using () => function() expression
-        <Person click={() => {switchNameHandler('SAU')}} name={personsState.persons[0].name} age={personsState.persons[0].age}/>
-        <Person changed={nameChangedHandler} name={personsState.persons[1].name} age={personsState.persons[1].age}><h5>My Hobbies : Travelling</h5></Person>
-        <Person name={personsState.persons[2].name} age={personsState.persons[2].age}/>
-        <Person name={personsState.persons[3].name} age={personsState.persons[3].age}/>
+        <Persons clicked={deletePersonHandler} 
+                 changed={nameChangedHandler} 
+                 personsState={personsState}/>
       </div>
-    );*/
-  // Using lists 
-  persons = (
-    <div>
-      { personsState.persons.map((person, index) => {
-        return <Persons personState={personsState}
-                click={() => deletePersonHandler(index)} 
-                name={person.name} 
-                age={person.age}
-                key={person.id}
-                changed={(event) => this.nameChangedHandler(event, person.id)}/>
-      })
-      }
-    </div>
-  );
-
+    );
   }
 
   return (
     <div className="App">
       <StyleRoot>
-          <Cockpit click={() => {switchNameHandler('Saurabh Chandorkar')}} btnClick={togglePersonsHandler}></Cockpit>
-          <Persons clicked={() => {deletePersonHandler(index)}} changed={nameChangedHandler}/>
-    </StyleRoot> 
+          <Cockpit click={() => {switchNameHandler('Saurabh Chandorkar')}} btnClick={togglePersonsHandler} showPersons={personsState.showPersons}></Cockpit>
+          {persons}
+      </StyleRoot> 
   </div>
   );
-  
-  /*return (
-    <div>
-      <UserInput />
-      <UserOutput name="Ruchi"/>
-      <UserOutput name="Saurabh"/>
-    </div>
-     {
-      personsState.showPersons ?  <div></div>
-       : null
-    }
-  );*/
 }
 
 export default App;

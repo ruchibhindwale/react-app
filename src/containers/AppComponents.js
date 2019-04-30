@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import UserInput from './UserInput/UserInput';
-import UserOutput from './UserOutput/UserOutput';
+import UserInput from '../UserInput/UserInput';
+import UserOutput from '../UserOutput/UserOutput';
 
 class AppComponents extends Component{
     state = {

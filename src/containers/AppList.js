@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Validation from './Validation-Lists/Validation';
-import CharComponent from './CharComponent-Lists/CharComponent';
+import Validation from '../Validation-Lists/Validation';
+import CharComponent from '../CharComponent-Lists/CharComponent';
 
 class AppList extends Component {
     state = {

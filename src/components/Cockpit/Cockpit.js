@@ -15,6 +15,10 @@ const Cockpit = props => {
         }
       }
 
+      if(props.showPersons){
+        styles.backgroundColor = 'red';
+      }
+      
     return(
         <div>
             <h1>Hi, I am a React App</h1>
