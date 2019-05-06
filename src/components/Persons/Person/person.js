@@ -34,13 +34,11 @@ const Person = (props) => {
     }
 
     render(){
-        return (
-            <div style={this.styles}>            
-                <p onClick={this.props.click}> My name is { this.props.name } and age is { this.props.age } </p>
-                <p>{ this.props.children }</p>
-                <input type='text' onChange={this.props.changed}/>
-            </div>
-         );
+        return [         
+            <p onClick={this.props.click}> My name is { this.props.name } and age is { this.props.age } </p>,
+            <p>{ this.props.children }</p>,
+            <input type='text' onChange={this.props.changed}/>
+        ];
      }
 
      getSnapshotBeforeUpdate(newProps, newState){
