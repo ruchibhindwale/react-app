@@ -1,7 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StyleRoot } from 'radium';
 
 const Cockpit = props => {
+
+    useEffect(() => {
+        console.log('[Cockpit.js] UseEffect');
+        return () => {
+            console.log('[Cockpit.js] Cleanup')
+        }
+    }, [])
+
+    useEffect(() => {
+        console.log('[Cockpit.js] 2nd UseEffect');
+        return () => {
+            console.log('[Cockpit.js] 2nd Cleanup');
+        }
+    })
 
     const styles = {
         backgroundColor : 'green',
@@ -18,7 +32,7 @@ const Cockpit = props => {
       if(props.showPersons){
         styles.backgroundColor = 'red';
       }
-      
+
     return(
         <div>
             <h1>Hi, I am a React App</h1>
@@ -30,4 +44,4 @@ const Cockpit = props => {
     );
 }
 
-export default Cockpit;
+export default React.memo(Cockpit);
