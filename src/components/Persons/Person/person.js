@@ -12,6 +12,7 @@ const Person = (props) => {
  import Radium from 'radium';
  import Aux from '../../../hoc/Aux';
  import wrapClass from '../../../hoc/wrapClass';
+ import PropTypes from 'prop-types';
 
  class Person extends Component {
      constructor(props){
@@ -56,6 +57,13 @@ const Person = (props) => {
      componentDidMount(){
          console.log('[Person.js] ComponentDidMount');
      }
+ }
+
+ Person.propTypes = {
+     click: PropTypes.func,
+     name: PropTypes.string,
+     age: PropTypes.number,
+     changed: PropTypes.func
  }
 
  export default wrapClass(Radium(Person), "Person");
