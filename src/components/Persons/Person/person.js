@@ -8,7 +8,7 @@ const Person = (props) => {
 }*/
 
 // Using classes to create components 
- import React, { Component } from 'react';
+ import React, { Component, Fragment } from 'react';
  import Radium from 'radium';
  import Aux from '../../../hoc/Aux';
 
@@ -35,11 +35,12 @@ const Person = (props) => {
     }
 
     render(){
-        return <Aux>
+        // return <React.Fragment> - Can also use React.Fragment instead of Fragment
+        return <Fragment>
             <p onClick={this.props.click}> My name is { this.props.name } and age is { this.props.age } </p>
             <p>{ this.props.children }</p>
             <input type='text' onChange={this.props.changed}/>
-        </Aux>
+        </Fragment>
      }
 
      getSnapshotBeforeUpdate(newProps, newState){
