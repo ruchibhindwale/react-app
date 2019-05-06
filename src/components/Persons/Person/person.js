@@ -11,6 +11,7 @@ const Person = (props) => {
  import React, { Component, Fragment } from 'react';
  import Radium from 'radium';
  import Aux from '../../../hoc/Aux';
+ import wrapClass from '../../../hoc/wrapClass';
 
  class Person extends Component {
      constructor(props){
@@ -57,4 +58,4 @@ const Person = (props) => {
      }
  }
 
- export default Radium(Person);
+ export default wrapClass(Radium(Person), "Person");
