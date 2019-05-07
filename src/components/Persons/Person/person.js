@@ -21,6 +21,9 @@ const Person = (props) => {
         console.log('[Person.js] Constructor');
         this.inputElementRef = React.createRef();
      }
+
+    static contextType = AuthContext;
+
     styles = {
         '@media (min-width: 500px)' :{
             width: '450px',
@@ -42,9 +45,7 @@ const Person = (props) => {
         console.log('Is Authenticated', this.props.isAuthenticated);
         // return <React.Fragment> - Can also use React.Fragment instead of Fragment
         return <Fragment>
-            <AuthContext.Consumer>
-                {(context) => context.isAuthenticated ? <p>Logged In</p> : <p>Please login in</p>}
-           </AuthContext.Consumer>
+            {this.context.isAuthenticated ? <p>Logged In</p> : <p>Please login in</p>}
             <p onClick={this.props.click}> My name is { this.props.name } and age is { this.props.age } </p>
             <p>{ this.props.children }</p>
             <input type='text' 
@@ -67,6 +68,7 @@ const Person = (props) => {
      componentDidMount(){
          console.log('[Person.js] ComponentDidMount');
          //this.inputElement.focus();
+         console.log(this.context.isAuthenticated);
          this.inputElementRef.current.focus(); 
      }
  }

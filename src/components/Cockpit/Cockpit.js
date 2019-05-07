@@ -1,10 +1,11 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useContext } from 'react';
 import AuthContext from '../../context/auth-context';
 import { StyleRoot } from 'radium';
 
 const Cockpit = props => {
 
     const toggleBtnRef = useRef(null);
+    const AppContext = useContext(AuthContext);
 
     useEffect(() => {
         console.log('[Cockpit.js] UseEffect');
@@ -43,9 +44,7 @@ const Cockpit = props => {
             <StyleRoot>
                 <button onClick={props.click}>Switch Name</button>
                 <button ref={toggleBtnRef} style={styles} onClick={props.btnClick}>Toggle Persons</button>
-                <AuthContext.Consumer>
-                    {(context) => <button onClick={context.login}>Log In</button>}
-                </AuthContext.Consumer>
+                <button onClick={AppContext.login}>Log In</button>
             </StyleRoot>
         </div>
     );
