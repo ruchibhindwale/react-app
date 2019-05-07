@@ -1,10 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { StyleRoot } from 'radium';
 
 const Cockpit = props => {
 
+    const toggleBtnRef = useRef(null);
+
     useEffect(() => {
         console.log('[Cockpit.js] UseEffect');
+        toggleBtnRef.current.click();
         return () => {
             console.log('[Cockpit.js] Cleanup')
         }
@@ -38,7 +41,7 @@ const Cockpit = props => {
             <h1>Hi, I am a React App</h1>
             <StyleRoot>
                 <button onClick={props.click}>Switch Name</button>
-                <button style={styles} onClick={props.btnClick}>Toggle Persons</button>
+                <button ref={toggleBtnRef} style={styles} onClick={props.btnClick}>Toggle Persons</button>
             </StyleRoot>
         </div>
     );

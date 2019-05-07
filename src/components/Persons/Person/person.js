@@ -18,6 +18,7 @@ const Person = (props) => {
      constructor(props){
         super(props);
         console.log('[Person.js] Constructor');
+        this.inputElementRef = React.createRef();
      }
     styles = {
         '@media (min-width: 500px)' :{
@@ -41,7 +42,11 @@ const Person = (props) => {
         return <Fragment>
             <p onClick={this.props.click}> My name is { this.props.name } and age is { this.props.age } </p>
             <p>{ this.props.children }</p>
-            <input type='text' onChange={this.props.changed}/>
+            <input type='text' 
+                   onChange={this.props.changed}
+                   //ref={(inputEl) => {this.inputElement = inputEl}}
+                  ref={this.inputElementRef}
+            />
         </Fragment>
      }
 
@@ -56,6 +61,8 @@ const Person = (props) => {
 
      componentDidMount(){
          console.log('[Person.js] ComponentDidMount');
+         //this.inputElement.focus();
+         this.inputElementRef.current.focus(); 
      }
  }
 
