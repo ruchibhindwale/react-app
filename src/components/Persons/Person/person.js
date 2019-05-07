@@ -38,8 +38,10 @@ const Person = (props) => {
     }
 
     render(){
+        console.log('Is Authenticated', this.props.isAuthenticated);
         // return <React.Fragment> - Can also use React.Fragment instead of Fragment
         return <Fragment>
+            {this.props.isAuthenticated ? <p>Logged In</p> : <p>Please login in</p>}
             <p onClick={this.props.click}> My name is { this.props.name } and age is { this.props.age } </p>
             <p>{ this.props.children }</p>
             <input type='text' 
