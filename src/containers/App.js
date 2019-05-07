@@ -2,6 +2,7 @@ import React, { Component, useState } from 'react';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 import WithClass from '../hoc/WithClass';
+import AuthContext from '../context/auth-context';
 import wrapClass from '../hoc/wrapClass';
 import { StyleRoot } from 'radium';
 import '../containers/App.css';
@@ -104,14 +105,15 @@ class App extends Component {
     return (
         <StyleRoot>
             <button onClick={() => {this.setState({showCockpit:false});}}>Remove Cockpit</button>
-            {this.state.showCockpit ? 
-            <Cockpit click={() => {this.switchNameHandler('Saurabh Chandorkar')}} 
+            <AuthContext.Provider value={{isAuthenticated: this.state.isAuthenticated, login: this.loginHandler}}>
+              {this.state.showCockpit ? 
+              <Cockpit click={() => {this.switchNameHandler('Saurabh Chandorkar')}} 
                      btnClick={this.togglePersonsHandler} 
                      showPersons={this.state.showPersons} 
-                     persons={this.state.persons}
-                     login={this.loginHandler}>
-           </Cockpit>  : null }
-            {persons}
+                     persons={this.state.persons}>
+              </Cockpit>  : null }
+              {persons}
+            </AuthContext.Provider>
         </StyleRoot> 
     );
   }

@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import AuthContext from '../../context/auth-context';
 import { StyleRoot } from 'radium';
 
 const Cockpit = props => {
@@ -42,7 +43,9 @@ const Cockpit = props => {
             <StyleRoot>
                 <button onClick={props.click}>Switch Name</button>
                 <button ref={toggleBtnRef} style={styles} onClick={props.btnClick}>Toggle Persons</button>
-                <button onClick={props.login}>Log In</button>
+                <AuthContext.Consumer>
+                    {(context) => <button onClick={context.login}>Log In</button>}
+                </AuthContext.Consumer>
             </StyleRoot>
         </div>
     );

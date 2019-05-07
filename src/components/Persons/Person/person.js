@@ -13,6 +13,7 @@ const Person = (props) => {
  import Aux from '../../../hoc/Aux';
  import wrapClass from '../../../hoc/wrapClass';
  import PropTypes from 'prop-types';
+ import AuthContext from '../../../context/auth-context';
 
  class Person extends Component {
      constructor(props){
@@ -41,7 +42,9 @@ const Person = (props) => {
         console.log('Is Authenticated', this.props.isAuthenticated);
         // return <React.Fragment> - Can also use React.Fragment instead of Fragment
         return <Fragment>
-            {this.props.isAuthenticated ? <p>Logged In</p> : <p>Please login in</p>}
+            <AuthContext.Consumer>
+                {(context) => context.isAuthenticated ? <p>Logged In</p> : <p>Please login in</p>}
+           </AuthContext.Consumer>
             <p onClick={this.props.click}> My name is { this.props.name } and age is { this.props.age } </p>
             <p>{ this.props.children }</p>
             <input type='text' 
