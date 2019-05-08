@@ -67,9 +67,9 @@ class App extends Component {
 
     this.setState((prevState, props) => {
       return {
-        persons: persons,
-        showPersons: false,
-        changeCounter : prevState.changeCounter + 1
+        persons: persons, 
+        showPersons: false, 
+        changeCounter: prevState.changeCounter + 1
       }
     });
   }
